@@ -1,0 +1,67 @@
+﻿@model SMN.Areas.Admin.Models.RegisterUserVm
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>RegisterUserVm</h4>
+<hr />
+<div class="row">
+    <div class="card ml-5">
+        <div class="col-md-12">
+            <form asp-action="Create"  enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword" class="control-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Emri" class="control-label"></label>
+                    <input asp-for="Emri" class="form-control" />
+                    <span asp-validation-for="Emri" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmriPrindit" class="control-label"></label>
+                    <input asp-for="EmriPrindit" class="form-control" />
+                    <span asp-validation-for="EmriPrindit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mbiemri" class="control-label"></label>
+                    <input asp-for="Mbiemri" class="form-control" />
+                    <span asp-validation-for="Mbiemri" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataELindjes" class="control-label"></label>
+                    <input type="date" asp-for="DataELindjes" class="form-control" />
+                    <span asp-validation-for="DataELindjes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Foto" class="control-label"></label>
+                    <input type="file" name="Foto" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Roli" class="control-label"></label>
+                    <input asp-for="Roli" class="form-control" />
+                    <span asp-validation-for="Roli" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
