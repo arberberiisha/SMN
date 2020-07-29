@@ -33,6 +33,13 @@ namespace SMN.Controllers
         public async Task<IActionResult> LoginAsync(LoginVm login)
         {
             IdentityUser identityUser = await userManager.FindByEmailAsync(login.Email);
+            if (identityUser == null)
+            {
+                TempData["error"] = "Perdoruesi nuk egziston.";
+                return View();
+            }
+                      
+            
             SignInResult signInResult = await signInManager.PasswordSignInAsync(identityUser, login.Password, false, false);
             if (signInResult.Succeeded)
             {
@@ -40,11 +47,20 @@ namespace SMN.Controllers
             }
             else
             {
-                return Ok("error loggin in");
+                TempData["error"] = "Paswordi eshte gabim!!!";
+                return View();
             }
             
         }
     
+
+
+        public async Task<IActionResult> LogoutAsync()
+        {
+            await signInManager.SignOutAsync();
+
+            return RedirectToAction("Index", "Home");
+        }
         public async Task<IActionResult> CreateAsync()
         {
             var user = new IdentityUser

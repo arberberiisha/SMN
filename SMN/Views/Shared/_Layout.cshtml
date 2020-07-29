@@ -24,13 +24,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                        </li>
+
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                Jeni te Kycur
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                             </li>
                         }
 
@@ -41,14 +46,67 @@
         </nav>
     </header>
     <div class="container">
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Gebim!</strong> @TempData["error"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>}
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/" method="post">
+                        <div class="form-group">
+                            <label for="name">Email</label>
+                            <input type="name" name="name" value="" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" value="" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="mail">Mesazhi</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - SP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top text-muted">
+        <div class="container mt-3">
+            <div class="row justify-content-around">
+                <div>
+                    <h3>Shkolla</h3>
+                    <p>Deshironi qe te kontaktoni me shkollen?</p>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary pl-5 pr-5" data-toggle="modal" data-target="#exampleModalCenter">Kontakto</button>
+                </div>
+            </div>
+            <div class="row justify-content-between bg-secondary text-white p-3">
+                <div><p>All Right Reserved</p></div>
+                <div> <a href="http://www.facebook.com"><img class="card-img-top" src="~/img/icons8-facebook-48.png" alt="Facebook"></a></div>
+            </div>
+
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

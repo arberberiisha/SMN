@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SMN.Data;
+using SMN.Data.Entities;
 using SMN.Models;
 
 namespace SMN.Controllers
@@ -12,14 +14,18 @@ namespace SMN.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            this.context = context;
         }
 
         public IActionResult Index()
         {
+            List<Post> list = context.Post.Take(3).ToList();
+            ViewData["posts"] = list;
             return View();
         }
 

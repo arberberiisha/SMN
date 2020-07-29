@@ -22,4 +22,9 @@
     <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Include="wwwroot\img\a.jpg" />
+  </ItemGroup>
+
 </Project>
